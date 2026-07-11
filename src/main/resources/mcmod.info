@@ -1,14 +1,14 @@
 [
 {
   "modid": "113_water_mechanics",
-  "name": "1.13 Water Mechanics",
-  "description": "Henlo.",
-  "version": "1.0.3",
+  "name": "Bubble Columns Backport",
+  "description": "Backports 1.13+ bubble columns to 1.12.2",
+  "version": "1.0.6",
   "mcversion": "1.12.2",
   "url": "",
   "updateUrl": "",
-  "authorList": ["xFra."],
-  "credits": "Me.",
+  "authorList": ["xFra"],
+  "credits": "",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

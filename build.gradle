@@ -14,9 +14,9 @@ apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '1.0.3'
+version = '1.0.6'
 group = 'com.xFra.113_water_mechanics' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = '1.13 Water Mechanics'
+archivesBaseName = 'bubble columns backport'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 

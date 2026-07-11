@@ -68,8 +68,18 @@ public class BlockDownwardsBubbleColumn extends BlockLiquid {
 
    @Override
    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+      super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
       if (!isValidPosition(worldIn, pos)) {
          worldIn.setBlockState(pos, Blocks.WATER.getDefaultState());
+      } else {
+         for (net.minecraft.util.EnumFacing facing : net.minecraft.util.EnumFacing.values()) {
+             if (facing != net.minecraft.util.EnumFacing.UP && facing != net.minecraft.util.EnumFacing.DOWN) {
+                 BlockPos adj = pos.offset(facing);
+                 if (worldIn.getBlockState(adj).getBlock() == Blocks.AIR) {
+                     worldIn.setBlockState(adj, Blocks.FLOWING_WATER.getDefaultState().withProperty(BlockLiquid.LEVEL, 1));
+                 }
+             }
+         }
       }
       BlockDownwardsBubbleColumn.placeBubbleColumn(worldIn, pos.up());
    }

@@ -28,6 +28,9 @@ public class BlockUpwardsBubbleColumn extends BlockLiquid {
    }
    
    public void onEnterBubbleColumn(Entity entityIn) {
+      if (entityIn.motionY < 0.0D) {
+          entityIn.motionY /= 3.0D;
+      }
 	  entityIn.motionY = Math.min(0.7D, entityIn.motionY + 0.06D);
 	  entityIn.fallDistance = 0.0F;
    }
@@ -74,8 +77,18 @@ public class BlockUpwardsBubbleColumn extends BlockLiquid {
 
    @Override
    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
+      super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
       if (!isValidPosition(worldIn, pos)) {
          worldIn.setBlockState(pos, Blocks.WATER.getDefaultState());
+      } else {
+         for (net.minecraft.util.EnumFacing facing : net.minecraft.util.EnumFacing.values()) {
+             if (facing != net.minecraft.util.EnumFacing.UP && facing != net.minecraft.util.EnumFacing.DOWN) {
+                 BlockPos adj = pos.offset(facing);
+                 if (worldIn.getBlockState(adj).getBlock() == Blocks.AIR) {
+                     worldIn.setBlockState(adj, Blocks.FLOWING_WATER.getDefaultState().withProperty(BlockLiquid.LEVEL, 1));
+                 }
+             }
+         }
       }
       BlockUpwardsBubbleColumn.placeBubbleColumn(worldIn, pos.up());
    }
