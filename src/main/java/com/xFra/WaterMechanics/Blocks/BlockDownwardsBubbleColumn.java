@@ -45,6 +45,7 @@ public class BlockDownwardsBubbleColumn extends BlockLiquid {
    }
    
    public static void placeBubbleColumn(World world, BlockPos pos) {
+      if (world.getBlockState(pos).getBlock() == state.getBlock()) return;
       if (canHoldBubbleColumn(world, pos)) {
           world.setBlockState(pos, state);
       }
